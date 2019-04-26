@@ -30,7 +30,7 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ItemListActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -76,7 +76,7 @@ public class ItemListActivity extends AppCompatActivity {
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final ItemListActivity mParentActivity;
+        private final MainActivity mParentActivity;
         private final List<DummyContent.DummyItem> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
@@ -101,7 +101,7 @@ public class ItemListActivity extends AppCompatActivity {
             }
         };
 
-        SimpleItemRecyclerViewAdapter(ItemListActivity parent,
+        SimpleItemRecyclerViewAdapter(MainActivity parent,
                                       List<DummyContent.DummyItem> items,
                                       boolean twoPane) {
             mValues = items;
