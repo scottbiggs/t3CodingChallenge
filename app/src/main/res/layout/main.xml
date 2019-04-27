@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    The top-level layout!
+
+    This is setup by MainActivity first, before anything else.
+    Please note that this INCLUDES
+
+            album_list.xml
+
+        which has two versions: one for phones and one for
+        tablets.
+-->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +38,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/item_list" />
+        <include layout="@layout/album_list" />
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

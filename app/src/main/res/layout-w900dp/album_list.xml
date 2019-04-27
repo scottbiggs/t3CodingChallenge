@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Included in main.xml, this is the tablet
+    version of the top-level layout.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,7 +24,7 @@
 
     <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_list"
+        android:id="@+id/albums_rv"
         android:name="sleepfuriously.com.t3codingchallenge.ItemListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
