@@ -21,12 +21,6 @@ import android.view.MenuItem;
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link MainActivity}.
- *
- * Activity (todo: make this a Fragment)
- * to display the photos for a given album.
- *
- * Hmmm. Looks like this is ONLY used
- * for phones, not the tablet.
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
