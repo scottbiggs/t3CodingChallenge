@@ -1,4 +1,4 @@
-package sleepfuriously.com.t3codingchallenge;
+package sleepfuriously.com.t3codingchallenge.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,14 +12,14 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
 
 /**
- * todo: Adapter for ...?
+ * todo: Adapter for album list
  */
-public class SimpleItemRecyclerViewAdapter
-//    public static class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+public class AlbumRVAdapter
+            extends RecyclerView.Adapter<AlbumRVAdapter.ViewHolder> {
 
         private final MainActivity mParentActivity;
         private final List<DummyContent.DummyItem> mValues;
@@ -30,8 +30,8 @@ public class SimpleItemRecyclerViewAdapter
                 DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
-                    ItemDetailFragment fragment = new ItemDetailFragment();
+                    arguments.putString(PhotosFragment.ARG_ITEM_ID, item.id);
+                    PhotosFragment fragment = new PhotosFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.item_detail_container, fragment)
@@ -39,16 +39,16 @@ public class SimpleItemRecyclerViewAdapter
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(PhotosFragment.ARG_ITEM_ID, item.id);
 
                     context.startActivity(intent);
                 }
             }
         };
 
-        SimpleItemRecyclerViewAdapter(MainActivity parent,
-                                      List<DummyContent.DummyItem> items,
-                                      boolean twoPane) {
+        AlbumRVAdapter(MainActivity parent,
+                       List<DummyContent.DummyItem> items,
+                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;

@@ -1,4 +1,4 @@
-package sleepfuriously.com.t3codingchallenge;
+package sleepfuriously.com.t3codingchallenge.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
+import sleepfuriously.com.t3codingchallenge.R;
 
 import android.view.MenuItem;
 
@@ -20,13 +21,19 @@ import android.view.MenuItem;
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link MainActivity}.
+ *
+ * Activity (todo: make this a Fragment)
+ * to display the photos for a given album.
+ *
+ * Hmmm. Looks like this is ONLY used
+ * for phones, not the tablet.
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_detail);
+        setContentView(R.layout.photos_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,9 +65,9 @@ public class ItemDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
-            ItemDetailFragment fragment = new ItemDetailFragment();
+            arguments.putString(PhotosFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(PhotosFragment.ARG_ITEM_ID));
+            PhotosFragment fragment = new PhotosFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)

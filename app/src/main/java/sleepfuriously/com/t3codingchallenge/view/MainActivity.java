@@ -1,4 +1,4 @@
-package sleepfuriously.com.t3codingchallenge;
+package sleepfuriously.com.t3codingchallenge.view;
 
 import android.os.Bundle;
 
@@ -12,7 +12,12 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import java.util.List;
+
+import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
+import sleepfuriously.com.t3codingchallenge.model.Album;
+import sleepfuriously.com.t3codingchallenge.model.ModelWindow;
 
 /**
  * todo: replace with my own comments
@@ -23,13 +28,33 @@ import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements ModelWindow.ModelWindowListener {
+
+    //------------------------
+    //  constants
+    //------------------------
+
+    //------------------------
+    //  widgets
+    //------------------------
+
+    /** Displays album list */
+    private RecyclerView mAlbumsRecyclerView;
+
+    //------------------------
+    //  data
+    //------------------------
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+
+    //------------------------
+    //  methods
+    //------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +82,17 @@ public class MainActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
-        View recyclerView = findViewById(R.id.albums_rv);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        // identify the albums recyclerview and request it to get filled
+        mAlbumsRecyclerView = findViewById(R.id.albums_rv);
+        assert mAlbumsRecyclerView != null;
+        ModelWindow mw = ModelWindow.getInstance(this);
+        mw.getAlbumList(this, this);
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
-    }
 
+    @Override
+    public void returnAlbumList(List<Album> albums, boolean successful, String msg) {
+        Snackbar.make(mAlbumsRecyclerView, "called!", Snackbar.LENGTH_SHORT).show();
+        mAlbumsRecyclerView.setAdapter(new AlbumRVAdapter(this, DummyContent.ITEMS, mTwoPane));
+    }
 }
