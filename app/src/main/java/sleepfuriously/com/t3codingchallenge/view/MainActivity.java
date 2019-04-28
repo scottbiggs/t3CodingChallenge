@@ -2,7 +2,6 @@ package sleepfuriously.com.t3codingchallenge.view;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -17,7 +16,7 @@ import java.util.List;
 import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
 import sleepfuriously.com.t3codingchallenge.model.Album;
-import sleepfuriously.com.t3codingchallenge.model.ModelWindow;
+import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
 /**
  * todo: replace with my own comments

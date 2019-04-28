@@ -1,4 +1,4 @@
-package sleepfuriously.com.t3codingchallenge.model;
+package sleepfuriously.com.t3codingchallenge.presenter;
 
 import android.content.Context;
 
@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import sleepfuriously.com.t3codingchallenge.model.Album;
 
 /**
  * All access to data comes through this class (using the
@@ -100,24 +102,8 @@ public class ModelWindow {
                 });
         q.add(request);
 
-
-//        // this gets the pure data
-//        RequestQueue q = Volley.newRequestQueue(ctx);
-//        StringRequest request = new StringRequest(Request.Method.GET, ALBUM_LIST_URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        List<Album> albumList = parseJsonToAlbums(response);
-//                        listener.returnAlbumList(albumList, true, ALBUM_SUCCESS_MSG);
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        listener.returnAlbumList(null, false, error.getMessage());
-//                    }
-//                });
     }
+
 
     //------------------------
     //  interfaces
