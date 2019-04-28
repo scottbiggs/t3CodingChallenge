@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F64B5</color>
     <color name="colorPrimaryDark">#243073</color>
-    <color name="colorAccent">#D8B91B</color>
+    <color name="colorAccent">#FFEB3B</color>
 
     <color name="album_item_background_normal">#DFE6FC</color>
     <color name="album_item_background_highlight">@color/colorAccent</color>

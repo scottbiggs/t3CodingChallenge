@@ -21,9 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".view.ItemDetailActivity"
-            android:label="@string/title_item_detail"
+            android:name=".view.PhotosActivity"
+            android:label="@string/album_photos"
             android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

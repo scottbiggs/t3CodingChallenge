@@ -12,9 +12,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import sleepfuriously.com.t3codingchallenge.R;
-import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
 import sleepfuriously.com.t3codingchallenge.model.Album;
 
 /**
@@ -59,20 +60,38 @@ public class AlbumRVAdapter
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
-            if (mTwoPane) {
-                Bundle arguments = new Bundle();
-                arguments.putString(PhotosFragment.ARG_ITEM_ID, item.id);
-                PhotosFragment fragment = new PhotosFragment();
-                fragment.setArguments(arguments);
-                mParentActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_detail_container, fragment)
-                        .commit();
-            } else {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, ItemDetailActivity.class);
-                intent.putExtra(PhotosFragment.ARG_ITEM_ID, item.id);
 
+            // The tag tells which album we're dealing with
+            int currentlySelected = (int) view.getTag();
+            Album album = mAlbumList.get(currentlySelected);
+
+            // redraw the selection
+            notifyItemChanged(mSelected);
+            notifyItemChanged(currentlySelected);
+            mSelected = currentlySelected;
+
+            if (mTwoPane) {
+                // Start the new Fragment
+                Bundle bundle = new Bundle();
+                bundle.putLong(PhotosFragment.ALBUM_ID_KEY, album.id);
+
+                PhotosFragment frag = new PhotosFragment();
+                frag.setArguments(bundle);
+
+                FragmentManager mgr = mParentActivity.getSupportFragmentManager();
+                FragmentTransaction transaction = mgr.beginTransaction();
+
+                // Replace the Fragment in the item_detail_container with the new Fragment.
+                transaction.replace(R.id.item_detail_container, frag);
+                transaction.commit();
+            }
+
+            else {
+                // Start new Activity
+                Context context = view.getContext();
+                Intent intent = new Intent(context, PhotosActivity.class);
+
+                intent.putExtra(PhotosFragment.ALBUM_ID_KEY, album.id);
                 context.startActivity(intent);
             }
         }
@@ -112,8 +131,8 @@ public class AlbumRVAdapter
         Album album = mAlbumList.get(position);
         holder.albumNameTv.setText(album.title);
 
-        // bookkeeping for proper click handling
-        holder.itemView.setTag(mAlbumList.get(position));
+        // Store the adapter position of this item for use during onClick
+        holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(mOnClickListener);
 
         // Possibly highlight this as a selected item
