@@ -112,7 +112,7 @@ public class ModelWindow {
     public interface ModelWindowListener {
 
         /**
-         * Response to a request to get the Album list.
+         * Called when the Album list is ready.
          *
          * @param albums        A List of Albums
          *

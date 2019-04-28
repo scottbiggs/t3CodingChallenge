@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity
      */
     private boolean mTwoPane;
 
+    /** Adapter for {@link MainActivity#mAlbumsRecyclerView}. */
+    private AlbumRVAdapter mAlbumAdapter;
+
     //------------------------
     //  methods
     //------------------------
@@ -84,14 +87,31 @@ public class MainActivity extends AppCompatActivity
         // identify the albums recyclerview and request it to get filled
         mAlbumsRecyclerView = findViewById(R.id.albums_rv);
         assert mAlbumsRecyclerView != null;
+
         ModelWindow mw = ModelWindow.getInstance(this);
+        // todo: start a waiting dialog to let user know something is happening
         mw.getAlbumList(this, this);
     }
 
 
+    /**
+     * Called when the album list is ready.
+     *
+     * @param albums        A List of Albums
+     *
+     * @param successful    Tells if the request was successful
+     *
+     * @param msg           If not successful, an error message
+     */
     @Override
     public void returnAlbumList(List<Album> albums, boolean successful, String msg) {
-        Snackbar.make(mAlbumsRecyclerView, "called!", Snackbar.LENGTH_SHORT).show();
-        mAlbumsRecyclerView.setAdapter(new AlbumRVAdapter(this, DummyContent.ITEMS, mTwoPane));
+
+        mAlbumAdapter = new AlbumRVAdapter(this, albums, mTwoPane);
+//        mAlbumAdapter = new AlbumRVAdapter(this, DummyContent.ITEMS, mTwoPane);
+
+        mAlbumsRecyclerView.setAdapter(mAlbumAdapter);
+
+        // todo: disable waiting dialog
     }
+
 }

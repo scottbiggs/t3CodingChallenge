@@ -32,7 +32,7 @@
         android:layout_marginRight="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context="sleepfuriously.com.t3codingchallenge.view.MainActivity"
-        tools:listitem="@layout/item_list_content" />
+        tools:listitem="@layout/album_list_item" />
 
     <FrameLayout
         android:id="@+id/item_detail_container"

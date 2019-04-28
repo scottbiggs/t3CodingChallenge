@@ -16,4 +16,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     tools:context=".view.MainActivity"
-    tools:listitem="@layout/item_list_content" />
+    tools:listitem="@layout/album_list_item" />
