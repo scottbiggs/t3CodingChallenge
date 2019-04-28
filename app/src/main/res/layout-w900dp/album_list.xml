@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        app:layoutManager="LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context="sleepfuriously.com.t3codingchallenge.view.MainActivity"
         tools:listitem="@layout/item_list_content" />
 
