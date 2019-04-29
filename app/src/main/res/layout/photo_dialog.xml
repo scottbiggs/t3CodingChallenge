@@ -12,31 +12,63 @@
     android:padding="8dp"
     >
 
-    <TextView
-        android:id="@+id/photo_title"
+    <TableLayout
+        android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:stretchColumns="2"
         android:layout_alignParentTop="true"
-        android:textSize="18sp" />
+        >
+        <TableRow>
+            <TextView
+                android:text="@string/title_pre"
+                android:gravity="end"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic"
+                android:padding="3dp"
+                />
+            <TextView
+                android:id="@+id/photo_title"
+                tools:text="some fancy title"
+                android:textSize="18sp"
+                android:padding="3dp"
+                />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/photo_album_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/photo_title"
-        android:textSize="18sp"
-        android:layout_marginStart="32dp"
-        />
+        <TableRow>
+            <TextView
+                android:text="@string/album_id_pre"
+                android:gravity="end"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic"
+                android:padding="3dp"
+                />
+            <TextView
+                android:id="@+id/photo_album_id"
+                tools:text="some album id"
+                android:textSize="18sp"
+                android:padding="3dp"
+                />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/photo_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/photo_album_id"
-        android:textSize="18sp"
-        android:layout_marginStart="32dp"
-        />
+        <TableRow>
+            <TextView
+                android:text="@string/photo_id_pre"
+                android:gravity="end"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic"
+                android:padding="3dp"
+                />
+            <TextView
+                android:id="@+id/photo_id"
+                android:textSize="18sp"
+                tools:text="some photo id"
+                />
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:id="@+id/ok_btn"
@@ -51,7 +83,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
-        android:layout_below="@id/photo_id"
+        android:contentDescription="@string/photo_desc"
+        android:layout_below="@id/table_layout"
         android:layout_above="@id/ok_btn"
         />
 

@@ -2,4 +2,10 @@
     <string name="app_name">t-3 Coding Challenge</string>
     <string name="album_photos">Album Photos</string>
     <string name="ok">ok</string>
+    <string name="photo_desc">The image you are not seeing is not really known to me either.</string>
+
+    <!-- prefixes for text fields -->
+    <string name="title_pre">title:</string>
+    <string name="album_id_pre">album ID:</string>
+    <string name="photo_id_pre">photo ID:</string>
 </resources>
