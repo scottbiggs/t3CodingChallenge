@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,10 @@ public class PhotosFragment extends Fragment
     //------------------------
 
     private RecyclerView mPhotosRecyclerView;
+
+    /** Gives user something to look at while waiting for data access */
+    ProgressDialog mProgressDialog;
+
 
     //------------------------
     //  data
@@ -108,9 +113,14 @@ public class PhotosFragment extends Fragment
         View rootView = inflater.inflate(R.layout.photos_list, container, false);
         mPhotosRecyclerView = rootView.findViewById(R.id.photo_list_rv);
 
+        // The network access may take a while, so show a progress dialog
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+
         // Start the callback to get all the photos from a given
         ModelWindow mw = ModelWindow.getInstance();
-        // todo: start waiting graphic
         mw.getPhotoListFromAlbumId(this, mAlbumId, getContext());
 
         return rootView;
@@ -140,7 +150,7 @@ public class PhotosFragment extends Fragment
             mPhotosRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
 
-        // todo: stop waiting graphic
+        mProgressDialog.dismiss();
     }
 
 }

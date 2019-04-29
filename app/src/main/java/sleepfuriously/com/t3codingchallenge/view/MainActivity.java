@@ -1,5 +1,6 @@
 package sleepfuriously.com.t3codingchallenge.view;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity
 
     /** Displays album list */
     private RecyclerView mAlbumsRecyclerView;
+
+    /** Gives user something to look at while waiting for data access */
+    ProgressDialog mProgressDialog;
+
 
     //------------------------
     //  data
@@ -84,8 +89,12 @@ public class MainActivity extends AppCompatActivity
         mAlbumsRecyclerView = findViewById(R.id.albums_rv);
         assert mAlbumsRecyclerView != null;
 
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+
         ModelWindow mw = ModelWindow.getInstance();
-        // todo: start a waiting dialog to let user know something is happening
         mw.getAlbumList(this, this);
     }
 
@@ -112,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         mAlbumAdapter = new AlbumRVAdapter(this, albums, mTwoPane);
         mAlbumsRecyclerView.setAdapter(mAlbumAdapter);
 
-        // todo: disable waiting dialog
+        mProgressDialog.dismiss();
     }
 
 
