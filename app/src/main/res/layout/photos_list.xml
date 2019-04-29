@@ -9,12 +9,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hi there 2"
+        tools:text="hi there 2"
         android:textSize="24sp"
         android:gravity="center"
         />

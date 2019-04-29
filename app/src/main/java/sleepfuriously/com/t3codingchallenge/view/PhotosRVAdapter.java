@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -68,6 +70,7 @@ public class PhotosRVAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.photo_thumb_item, parent, false);
+
         return new ViewHolder(v);
     }
 
@@ -99,6 +102,11 @@ public class PhotosRVAdapter
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        // static widgets
+        final TextView albumIdPre;
+        final TextView idPre;
+
+        // dynamic
         final ImageView thumbnail;
         final TextView title;
         final TextView albumId;
@@ -106,6 +114,13 @@ public class PhotosRVAdapter
 
         ViewHolder(View v) {
             super(v);
+
+            albumIdPre = v.findViewById(R.id.album_id_pre);
+            albumIdPre.setText(R.string.album_id_pre);
+
+            idPre = v.findViewById(R.id.id_pre);
+            idPre.setText(R.string.photo_id_pre);
+
             thumbnail = v.findViewById(R.id.photo_thumb_iv);
             title = v.findViewById(R.id.title_tv);
             albumId = v.findViewById(R.id.album_id_tv);
