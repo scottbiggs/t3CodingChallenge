@@ -19,7 +19,7 @@ import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.model.Album;
 
 /**
- * todo: Adapter for album list
+ * Adapter for album list
  */
 public class AlbumRVAdapter
             extends RecyclerView.Adapter<AlbumRVAdapter.ViewHolder> {

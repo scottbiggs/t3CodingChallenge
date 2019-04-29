@@ -54,7 +54,7 @@ public class PhotosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.photos_layout);
+        setContentView(R.layout.photos_activity);
 
         mAlbumId = getIntent().getLongExtra(PhotosFragment.ALBUM_ID_KEY, -1);
         if (mAlbumId == -1) {

@@ -3,6 +3,7 @@ package sleepfuriously.com.t3codingchallenge.view;
 import android.app.Activity;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Bundle;
 
@@ -14,17 +15,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
 import sleepfuriously.com.t3codingchallenge.model.Album;
+import sleepfuriously.com.t3codingchallenge.model.Photo;
+import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
 /**
- * Displays the photographs of a given Album.<br>
+ * Displays the photograph thumbnails of a given Album.<br>
  * <br>
- * On tablets, this is the 2nd pane of the {@link MainActivity}.
- * But on phones, this is displayed within {@link PhotosActivity}.
  */
-public class PhotosFragment extends Fragment {
+public class PhotosFragment extends Fragment
+        implements ModelWindow.ModelWindowPhotosListener {
+
+    //------------------------
+    //  constants
+    //------------------------
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -37,16 +49,31 @@ public class PhotosFragment extends Fragment {
      */
     public static final String ALBUM_ID_KEY = "album_id_key";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-//    private DummyContent.DummyItem mItem;
+    //------------------------
+    //  widgets
+    //------------------------
 
-    /** The album to display (and its associated images */
-    private Album mAlbum;
+    private RecyclerView mPhotosRecyclerView;
 
-    // todo: make list of photos
+    //------------------------
+    //  data
+    //------------------------
 
+    /** Useful reference for finding views */
+    private View mParentView;
+
+    /** We don't really need the album, but just the ID */
+    private long mAlbumId;
+
+    /** Holds all the photos to display (the main purpose of this Fragment) */
+    private List<Photo> mPhotoList;
+
+    private PhotosRVAdapter mPhotosAdapter;
+
+
+    //------------------------
+    //  methods
+    //------------------------
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -59,35 +86,49 @@ public class PhotosFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        // todo: load album info
+        mAlbumId =  getArguments().getLong(ALBUM_ID_KEY);
 
-            // todo: load album info
-            mAlbum = new Album(0, 0, "test album");
-            mAlbum.id = getArguments().getLong(ALBUM_ID_KEY);
-
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-//            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mAlbum.title);
-            }
+        Activity activity = this.getActivity();
+        CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(null);    // todo: change this to something meaningful
         }
+
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.photo_thumb_item, container, false);
+        View rootView = inflater.inflate(R.layout.photos_list, container, false);
+        mParentView = container;
 
-        // Show the dummy content as text in a TextView.
-        if (mAlbum != null) {
-            ((TextView) rootView.findViewById(R.id.album_id_tv)).setText(mAlbum.title);
-        }
+        mPhotosRecyclerView = rootView.findViewById(R.id.photo_list_rv);
+
+        // Start the callback to get all the photos from a given
+        ModelWindow mw = ModelWindow.getInstance(getContext());
+        mw.getPhotoListFromAlbumId(this, mAlbumId, getContext());
 
         return rootView;
     }
+
+
+
+    @Override
+    public void returnPhotoList(List<Photo> photos, boolean successful, String msg) {
+
+        mPhotoList = photos;
+
+        // Setup the RecyclerView to display the newly-acquired list of photos
+
+//        mPhotosRecyclerView.setLayoutManager();   todo: set to grid manager
+
+        mPhotosAdapter = new PhotosRVAdapter(this, mPhotoList);
+
+        mPhotosRecyclerView.setAdapter(mPhotosAdapter);
+        mPhotosRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+    }
+
 }

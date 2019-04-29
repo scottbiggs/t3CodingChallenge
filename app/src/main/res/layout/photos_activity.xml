@@ -2,6 +2,10 @@
 <!--
     Layout to display all the photos for a given
     album.
+
+    This is only displayed on the phone version.  The
+    tablet simply displays photos_list.xml in its
+    second pane.
 -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,6 +43,8 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/photos_list" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/item_detail_container"

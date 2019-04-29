@@ -9,12 +9,14 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
 
 import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.model.Album;
+import sleepfuriously.com.t3codingchallenge.model.Photo;
 import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
 /**
@@ -27,11 +29,13 @@ import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
  * item details side-by-side using two vertical panes.
  */
 public class MainActivity extends AppCompatActivity
-    implements ModelWindow.ModelWindowListener {
+    implements ModelWindow.ModelWindowAlbumsListener {
 
     //------------------------
     //  constants
     //------------------------
+
+    private static final String DTAG = MainActivity.class.getSimpleName();
 
     //------------------------
     //  widgets
@@ -106,8 +110,6 @@ public class MainActivity extends AppCompatActivity
     public void returnAlbumList(List<Album> albums, boolean successful, String msg) {
 
         mAlbumAdapter = new AlbumRVAdapter(this, albums, mTwoPane);
-//        mAlbumAdapter = new AlbumRVAdapter(this, DummyContent.ITEMS, mTwoPane);
-
         mAlbumsRecyclerView.setAdapter(mAlbumAdapter);
 
         // todo: disable waiting dialog
