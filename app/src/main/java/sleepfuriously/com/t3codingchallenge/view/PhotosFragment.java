@@ -109,7 +109,7 @@ public class PhotosFragment extends Fragment
         mPhotosRecyclerView = rootView.findViewById(R.id.photo_list_rv);
 
         // Start the callback to get all the photos from a given
-        ModelWindow mw = ModelWindow.getInstance(getContext());
+        ModelWindow mw = ModelWindow.getInstance();
         // todo: start waiting graphic
         mw.getPhotoListFromAlbumId(this, mAlbumId, getContext());
 

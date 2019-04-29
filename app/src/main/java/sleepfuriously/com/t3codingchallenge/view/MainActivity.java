@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         mAlbumsRecyclerView = findViewById(R.id.albums_rv);
         assert mAlbumsRecyclerView != null;
 
-        ModelWindow mw = ModelWindow.getInstance(this);
+        ModelWindow mw = ModelWindow.getInstance();
         // todo: start a waiting dialog to let user know something is happening
         mw.getAlbumList(this, this);
     }

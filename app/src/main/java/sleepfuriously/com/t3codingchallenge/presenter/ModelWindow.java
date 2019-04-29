@@ -63,17 +63,16 @@ public class ModelWindow {
     //  methods
     //------------------------
 
-    private ModelWindow (Context ctx) {
-        // todo
+    private ModelWindow() {
     }
 
     /**
      * As per the Singleton Pattern, return an instance of this
      * class.
      */
-    public static ModelWindow getInstance (Context ctx) {
+    public static ModelWindow getInstance() {
         if (mInstance == null) {
-            mInstance = new ModelWindow(ctx);
+            mInstance = new ModelWindow();
         }
         return  mInstance;
     }
