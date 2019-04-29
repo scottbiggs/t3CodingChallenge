@@ -70,6 +70,8 @@ public class PhotosFragment extends Fragment
 
     private PhotosRVAdapter mPhotosAdapter;
 
+    /** When TRUE, this is in a 2-pane environment */
+    private boolean mTwoPane;
 
     //------------------------
     //  methods
@@ -86,13 +88,17 @@ public class PhotosFragment extends Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // todo: load album info
         mAlbumId =  getArguments().getLong(ALBUM_ID_KEY);
 
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
+            // AppBarLayout only appears here for phones (single pane)
+            mTwoPane = false;
             appBarLayout.setTitle(null);    // todo: change this to something meaningful
+        }
+        else {
+            mTwoPane = true;
         }
 
     }
@@ -108,6 +114,7 @@ public class PhotosFragment extends Fragment
 
         // Start the callback to get all the photos from a given
         ModelWindow mw = ModelWindow.getInstance(getContext());
+        // todo: start waiting graphic
         mw.getPhotoListFromAlbumId(this, mAlbumId, getContext());
 
         return rootView;
@@ -127,8 +134,14 @@ public class PhotosFragment extends Fragment
         mPhotosAdapter = new PhotosRVAdapter(this, mPhotoList);
 
         mPhotosRecyclerView.setAdapter(mPhotosAdapter);
-        mPhotosRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        if (mTwoPane) {
+            mPhotosRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        }
+        else {
+            mPhotosRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
 
+        // todo: stop waiting graphic
     }
 
 }

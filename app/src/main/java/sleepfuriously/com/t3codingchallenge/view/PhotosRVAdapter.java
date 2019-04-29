@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -65,7 +67,8 @@ public class PhotosRVAdapter
 
         Photo photo = mPhotoList.get(position);
 
-        // todo: thumbnail!!!!
+        // This bypasses the Presenter. todo: get images without breaking MVP pattern
+        Picasso.with(mParentFragment.getContext()).load(photo.thumbnailUrl).into(holder.thumbnail);
         holder.title.setText(photo.title);
         holder.albumId.setText(Long.toString(photo.albumId));
         holder.id.setText(Long.toString(photo.id));

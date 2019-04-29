@@ -214,7 +214,6 @@ public class ModelWindow {
          * @param msg           If not successful, error message
          */
         void returnPhotoList(List<Photo> photos, boolean successful, String msg);
-
     }
 
 }
