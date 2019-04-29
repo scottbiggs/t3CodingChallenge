@@ -33,6 +33,7 @@
                 tools:text="some fancy title"
                 android:textSize="18sp"
                 android:padding="3dp"
+                android:layout_weight="1"
                 />
         </TableRow>
 
@@ -49,6 +50,7 @@
                 android:id="@+id/photo_album_id"
                 tools:text="some album id"
                 android:textSize="18sp"
+                android:layout_weight="1"
                 android:padding="3dp"
                 />
         </TableRow>
@@ -66,6 +68,7 @@
                 android:id="@+id/photo_id"
                 android:textSize="18sp"
                 tools:text="some photo id"
+                android:layout_weight="1"
                 />
         </TableRow>
     </TableLayout>
