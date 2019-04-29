@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">t-3 Coding Challenge</string>
     <string name="album_photos">Album Photos</string>
+    <string name="ok">ok</string>
 </resources>

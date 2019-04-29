@@ -128,11 +128,7 @@ public class PhotosFragment extends Fragment
         mPhotoList = photos;
 
         // Setup the RecyclerView to display the newly-acquired list of photos
-
-//        mPhotosRecyclerView.setLayoutManager();   todo: set to grid manager
-
         mPhotosAdapter = new PhotosRVAdapter(this, mPhotoList);
-
         mPhotosRecyclerView.setAdapter(mPhotosAdapter);
         if (mTwoPane) {
             mPhotosRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

@@ -1,6 +1,7 @@
 package sleepfuriously.com.t3codingchallenge.view;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,16 @@ public class PhotosRVAdapter
     //  listener
     //------------------------
 
-    // todo
+    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            int pos = (int) v.getTag();
+            PhotoDialog dialog = new PhotoDialog(mPhotoList.get(pos), v.getContext());
+            dialog.show();
+
+        }
+    };
 
     //------------------------
     //  methods
@@ -72,6 +82,10 @@ public class PhotosRVAdapter
         holder.title.setText(photo.title);
         holder.albumId.setText(Long.toString(photo.albumId));
         holder.id.setText(Long.toString(photo.id));
+
+        // store some info to be retrieved later when clicked
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(mOnClickListener);
     }
 
     @Override
