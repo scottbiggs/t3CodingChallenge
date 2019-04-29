@@ -23,14 +23,6 @@ import sleepfuriously.com.t3codingchallenge.model.Photo;
 public class PhotoDialog extends Dialog {
 
     //------------------------
-    //  constants
-    //------------------------
-
-    //------------------------
-    //  widgets
-    //------------------------
-
-    //------------------------
     //  data
     //------------------------
 

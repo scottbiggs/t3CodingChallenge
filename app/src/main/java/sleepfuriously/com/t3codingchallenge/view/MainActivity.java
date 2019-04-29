@@ -6,17 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.util.Log;
-import android.view.View;
-
 import java.util.List;
 
 import sleepfuriously.com.t3codingchallenge.R;
 import sleepfuriously.com.t3codingchallenge.model.Album;
-import sleepfuriously.com.t3codingchallenge.model.Photo;
 import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
 /**

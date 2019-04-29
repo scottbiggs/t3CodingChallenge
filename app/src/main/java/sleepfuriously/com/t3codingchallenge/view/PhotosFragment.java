@@ -55,9 +55,6 @@ public class PhotosFragment extends Fragment
     //  data
     //------------------------
 
-    /** Useful reference for finding views */
-    private View mParentView;
-
     /** We don't really need the album, but just the ID */
     private long mAlbumId;
 
@@ -103,9 +100,8 @@ public class PhotosFragment extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.photos_list, container, false);
-        mParentView = container;
 
+        View rootView = inflater.inflate(R.layout.photos_list, container, false);
         mPhotosRecyclerView = rootView.findViewById(R.id.photo_list_rv);
 
         // Start the callback to get all the photos from a given
