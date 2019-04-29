@@ -9,9 +9,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class PhotosFragment extends Fragment
     //------------------------
     //  constants
     //------------------------
+
+    private static final String DTAG = PhotosFragment.class.getSimpleName();
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -88,7 +92,7 @@ public class PhotosFragment extends Fragment
         if (appBarLayout != null) {
             // AppBarLayout only appears here for phones (single pane)
             mTwoPane = false;
-            appBarLayout.setTitle(null);    // todo: change this to something meaningful
+            appBarLayout.setTitle(null);    // no title needed here
         }
         else {
             mTwoPane = true;
@@ -116,6 +120,13 @@ public class PhotosFragment extends Fragment
 
     @Override
     public void returnPhotoList(List<Photo> photos, boolean successful, String msg) {
+
+        if (!successful) {
+            Log.e(DTAG, "Error getting returnPhotoList(). Msg = " + msg);
+            Toast.makeText(getActivity(), R.string.no_internet_warning, Toast.LENGTH_LONG).show();
+            getActivity().finish();
+            return;
+        }
 
         mPhotoList = photos;
 

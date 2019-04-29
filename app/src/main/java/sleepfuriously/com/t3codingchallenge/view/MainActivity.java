@@ -1,6 +1,14 @@
 package sleepfuriously.com.t3codingchallenge.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,13 +21,7 @@ import sleepfuriously.com.t3codingchallenge.model.Album;
 import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
 /**
- * todo: replace with my own comments
- * An activity representing a list of Items. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link PhotosActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
+ * Starting point.  This works fine with both tablets and phones.
  */
 public class MainActivity extends AppCompatActivity
     implements ModelWindow.ModelWindowAlbumsListener {
@@ -59,6 +61,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        // First things first, gotta be on the  internet!
+        if (!isInternetAvailable()) {
+            View v = findViewById(android.R.id.content);
+            Snackbar.make(v, R.string.no_internet_warning, Snackbar.LENGTH_LONG).show();
+            finish();
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -93,10 +102,31 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void returnAlbumList(List<Album> albums, boolean successful, String msg) {
 
+        if (!successful) {
+            Log.e(DTAG, "returnAlbumList() is unsuccessful. Msg = " + msg);
+            Toast.makeText(this, R.string.no_internet_warning, Toast.LENGTH_LONG).show();
+            finish();
+            return; // might be redundant?
+        }
+
         mAlbumAdapter = new AlbumRVAdapter(this, albums, mTwoPane);
         mAlbumsRecyclerView.setAdapter(mAlbumAdapter);
 
         // todo: disable waiting dialog
+    }
+
+
+    /**
+     * Goes through the ConnectivityManager to determine if this
+     * app has access to the internet currently.
+     */
+    private boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return (activeNetworkInfo != null)
+                && activeNetworkInfo.isAvailable()
+                && activeNetworkInfo.isConnected();
     }
 
 }

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">t-3 Coding Challenge</string>
+
+    <string name="no_internet_warning">This app requires internet access. Please enable internet and try again.</string>
+
     <string name="album_photos">Album Photos</string>
     <string name="ok">ok</string>
     <string name="photo_desc">The image you are not seeing is not really known to me either.</string>
