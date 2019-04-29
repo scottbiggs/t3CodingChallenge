@@ -3,7 +3,6 @@ package sleepfuriously.com.t3codingchallenge.view;
 import android.app.Activity;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Bundle;
 
@@ -13,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -21,8 +19,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import sleepfuriously.com.t3codingchallenge.R;
-import sleepfuriously.com.t3codingchallenge.dummy.DummyContent;
-import sleepfuriously.com.t3codingchallenge.model.Album;
 import sleepfuriously.com.t3codingchallenge.model.Photo;
 import sleepfuriously.com.t3codingchallenge.presenter.ModelWindow;
 
