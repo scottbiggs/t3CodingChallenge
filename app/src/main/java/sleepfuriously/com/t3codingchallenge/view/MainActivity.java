@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(false);
         mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setTitle(R.string.loading_albums);
         mProgressDialog.show();
 
         ModelWindow mw = ModelWindow.getInstance();

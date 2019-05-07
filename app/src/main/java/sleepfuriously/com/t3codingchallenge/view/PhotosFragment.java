@@ -57,7 +57,7 @@ public class PhotosFragment extends Fragment
     private RecyclerView mPhotosRecyclerView;
 
     /** Gives user something to look at while waiting for data access */
-    ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
 
     //------------------------
@@ -117,6 +117,7 @@ public class PhotosFragment extends Fragment
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setCancelable(false);
         mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setTitle(R.string.loading_thumbnails);
         mProgressDialog.show();
 
         // Start the callback to get all the photos from a given
