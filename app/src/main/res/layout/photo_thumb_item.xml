@@ -32,7 +32,8 @@
             android:contentDescription="@string/photo_desc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_launcher_background" />
+            tools:src="@mipmap/ic_t3_launcher"
+            />
 
         <TextView
             android:id="@+id/album_id_pre"
